@@ -11,6 +11,7 @@ import com.promineotech.jeep.entity.Jeep;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -24,7 +25,7 @@ public interface JeepSalesController {
 			summary = "Returns a list of Jeeps",
 			description = "Given an optional model and/or trim returns a lists of Jeeps",
 			responses ={
-			@ApiResponse(responseCode = "200", description = "A list of Jeeps is returned", content = @Content(mediaType = "application/json", schema = @Schema(implemention = Jeep.class))),
+			@ApiResponse(responseCode = "200", description = "A list of Jeeps is returned", content = @Content(mediaType = "application/json")),
 			@ApiResponse(responseCode = "400", description = "The request parameters are invalid", content = @Content(mediaType = "application/json")),
 			@ApiResponse(responseCode = "404", description = "No Jeeps found with input criteria", content = @Content(mediaType = "application/json")),
 			@ApiResponse(responseCode = "500", description = "Unplanned error occured", content = @Content(mediaType = "application/json"))
@@ -32,12 +33,21 @@ public interface JeepSalesController {
 			},
 			parameters = {
 			@Parameter(
-			name = "model",	allowEmptyValue = false, required = false, description = "The model name is"),
+			name= "Model",
+			allowEmptyValue=false,
+			required=false,
+			description= "The model type is"),
 			@Parameter(
-			name = "trim", allowEmptyValue = false, required = false, description = "The trim level is")
-					
+			name= "trim",
+			allowEmptyValue= false,
+			required=false,
+			description= "The trim type is")
+			
+			
 			}
-	)
+		)
+			
+	
 	// @formatter:on
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)

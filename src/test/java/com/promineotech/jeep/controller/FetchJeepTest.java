@@ -6,8 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
@@ -19,13 +22,19 @@ import com.promineotech.jeep.entity.JeepModel;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-@Sql(scripts = {
+/*@Sql(scripts = {
     "classpath:flyway/migrations/V1.0__Jeep_Schema.sql",
     "classpath:flyway/migrations/V1.1__Jeep_Data.sql"}, 
-    config = @SqlConfig(encoding = "utf-8"))
+    config = @SqlConfig(encoding = "utf-8"))*/
 
 class FetchJeepTest {
 
+	@Autowired
+	private TestRestTemplate restTemplate;
+	
+	@LocalServerPort
+	private int serverPort;
+	
 	@Test
 	void testThatJeepsAreReturnedWhenAValidModelAndTrimAreSupplied(){
 		// Given: a valid model, trim and URI
@@ -40,5 +49,15 @@ class FetchJeepTest {
 		ResponseEntity<Jeep> response = restTemplate().getForEntity(uri, Jeep.class);
 		
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+	}
+
+	private TestRestTemplate restTemplate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Object getBaseUri() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

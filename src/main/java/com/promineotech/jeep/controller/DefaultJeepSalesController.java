@@ -5,11 +5,20 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.promineotech.jeep.entity.Jeep;
-@RestController 
+
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@Slf4j
+
+
 public class DefaultJeepSalesController implements JeepSalesController {
 
-	public List<Jeep> fetchJeeps(String model, String trim) {
-		// TODO Auto-generated method stub
+		
+		
+		public List<Jeep> fetchJeeps(String model, String trim) {
+
+		log.info("model= {}, trim{}", model, trim);
 		return null;
 	}
 

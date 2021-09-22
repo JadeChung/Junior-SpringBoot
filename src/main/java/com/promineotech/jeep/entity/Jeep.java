@@ -13,12 +13,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 	public class Jeep {
 	
-	  private Long modelPK;
-	  private JeepModel modelId;
-	  private String trimLevel;
-	  private int numDoors;
-	  private int wheelSize;
-	  private BigDecimal basePrice;
+	  @SuppressWarnings("unused")
+	private Long modelPK;
+	  @SuppressWarnings("unused")
+	private JeepModel modelId;
+	  @SuppressWarnings("unused")
+	private String trimLevel;
+	  @SuppressWarnings("unused")
+	private int numDoors;
+	  @SuppressWarnings("unused")
+	private int wheelSize;
+	  @SuppressWarnings("unused")
+	private BigDecimal basePrice;
 	}
 
-}
+
