@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.promineotech.jeep.dao.JeepSalesDao;
 import com.promineotech.jeep.entity.Jeep;
@@ -19,7 +20,8 @@ public class DefaultJeepSalesService implements JeepSaleService {
 	
 	@Autowired
 	private JeepSalesDao jeepSalesDao;
-
+	
+	@Transactional(readOnly = true)
 	@Override
 	public List<Jeep> fetchJeeps(JeepModel model, String trim) {
 		log.info("The FetchJeeps method was called with model={} and trim={}", model, trim);
