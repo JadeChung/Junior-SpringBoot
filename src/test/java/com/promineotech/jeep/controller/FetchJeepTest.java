@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ import com.promineotech.jeep.entity.Jeep;
 import com.promineotech.jeep.entity.JeepModel;
 
 
-
+@Nested
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @Sql(scripts = {"classpath:flyway/migrations/V1.0__Jeep_Schema.sql", "classpath:flyway/migrations/V1.1__Jeep_Data.sql"},
@@ -49,10 +50,10 @@ class FetchJeepTest extends FetchJeepTestSupport {
 		// Given a valid model or trim
 		JeepModel model = JeepModel.WRANGLER; 
 		String trim = "Sport";
-		String uri = String.format("%s?model=%s&trim=%s", getBaseUri(), model, trim);
+		String uri = String.format("%s?model=%s&trim=%s", getBaseUriForJeeps(), model, trim);
 		
 		// connection is made to the uri
-				System.out.println(getBaseUri());
+				System.out.println(getBaseUriForJeeps());
 				ResponseEntity<List<Jeep>> response = 
 						getRestTemplate().exchange(uri, HttpMethod.GET, null,
 								new ParameterizedTypeReference<>() {});
